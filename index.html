@@ -2,6 +2,98 @@
 <html lang="en">
   <head> </head>
   <body>
-    <h1>Clam example page</h1>
+    <header>
+      <h1>Clam</h1>
+    </header>
+    <div id="credential">
+      <label for="clientId" class="label-cred">Client ID</label>
+      <input type="text" id="clientId" name="clientId" class="value-cred" />
+      <label for="scope" class="label-cred">Scope</label>
+      <input type="text" id="scope" name="scope" class="value-cred" />
+      <label for="redirectUrl" class="label-cred">Redirect URL</label>
+      <input
+        type="text"
+        id="redirectUrl"
+        name="redirectUrl"
+        class="value-cred"
+      />
+      <button id="set-cred">Set</button>
+    </div>
+    <button id="get-token">Get Access Token</button>
+    <form id="formElem">
+      <input type="file" id="file-upload" name="file-upload" multiple />
+      <input type="submit" id="submit-button" />
+    </form>
   </body>
+  <style>
+    .label-cred {
+      color: black;
+    }
+    .value-cred {
+      display: block;
+    }
+  </style>
+  <script type="module">
+    import Clam from "./clam/clam.js";
+    const clam = new Clam();
+    let authInfo;
+    let json = {
+      clientId: "hoge",
+      scope: "hoge",
+      redirectUrl: "hoge",
+    };
+    document.getElementById("set-cred").addEventListener("click", () => {
+      json.clientId = document.getElementById("clientId").value;
+      json.scope = document.getElementById("scope").value;
+      json.redirectUrl = document.getElementById("redirectUrl").value;
+      clam.setCred(json);
+      console.log(typeof clam);
+      console.log(typeof clam.getAuth);
+      console.log(typeof clam.uploadFiles);
+      document
+        .getElementById("get-token")
+        .addEventListener("click", clam.getAuth);
+    });
+
+    console.log("🐙" + location.search);
+    console.log(json.redirectUrl);
+    authInfo = clam.getAuthInfo();
+    if (authInfo.token) {
+      const ele = document.createElement("span");
+      ele.textContent = "Your access token is " + authInfo.token;
+      document.body.appendChild(ele);
+      document.getElementById("submit-button").disabled = false;
+    } else {
+      // Do nothing
+    }
+
+    function callback(err, fileName) {
+      if (err) {
+        console.error("failure: " + fileName);
+        console.error(err);
+      } else {
+        console.log("success: " + fileName);
+      }
+    }
+
+    function success(fileName) {
+      console.log("success: " + fileName);
+    }
+
+    function failure(fileName) {
+      console.log("failure: " + fileName);
+    }
+
+    formElem.onsubmit = async (e) => {
+      e.preventDefault();
+      const files = document.getElementById("file-upload").files;
+      console.log(files);
+      const result = await clam.uploadFiles(
+        files,
+        "test-bucket-hacknock",
+        callback
+      );
+      console.log(result);
+    };
+  </script>
 </html>
