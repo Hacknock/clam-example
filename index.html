@@ -6,7 +6,7 @@
       <h1>Clam</h1>
     </header>
     <main>
-      <div id="credential">
+      <section id="credential">
         <h2>Set Credential Information</h2>
         <div class="each-item-cred">
           <label for="clientId" class="label-cred">Client ID</label>
@@ -40,12 +40,26 @@
         </div>
         <button id="set-cred">SET</button>
         <span id="message-cred"></span>
-      </div>
-      <button id="get-token">Get Access Token</button>
-      <form id="formElem">
-        <input type="file" id="file-upload" name="file-upload" multiple />
-        <input type="submit" id="submit-button" />
-      </form>
+      </section>
+      <hr />
+      <section id="accessToken">
+        <h2>Get Access Token</h2>
+        <button id="get-token">Get Access Token</button>
+        <h3>Your Access Token</h3>
+        <div class="message" id="message-token"></div>
+      </section>
+      <hr />
+      <section id="fileUpload">
+        <h2>File Upload</h2>
+        <form id="formElem">
+          <input type="file" id="file-upload" name="file-upload" multiple />
+          <input type="submit" id="submit-button" />
+        </form>
+        <h3>File Upload Result</h3>
+        <div class="message" id="message-upload">
+          <ul id="list-message"></ul>
+        </div>
+      </section>
     </main>
     <footer>&copy; 2022 <a href="https://hacknock.com">Hacknock</a></footer>
   </body>
@@ -58,6 +72,9 @@
       margin: 0;
     }
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       margin: 0;
       padding: 0;
       background: #e0f7fa;
@@ -69,11 +86,37 @@
     .each-item-cred {
       margin: 20px 0;
     }
-
+    #message-cred {
+      display: block;
+      color: #f44336;
+      margin: 15px 0;
+    }
+    #message-token {
+      display: block;
+    }
+    .message {
+      background: #fff;
+      width: 50%;
+      padding: 5px 10px;
+      height: 100px;
+      margin: 20px;
+      border: 1px solid #bdbdbd;
+      overflow-wrap: anywhere;
+      font-size: 15px;
+    }
+    #list-message {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .fail-item-upload {
+      color: #f44336;
+    }
     footer {
+      margin-top: auto;
       background: #fff;
       text-align: center;
-      padding: 10px 10%;
+      padding: 30px 10%;
     }
     .label-cred {
       font-size: 20px;
@@ -121,8 +164,8 @@
     authInfo = clam.getAuthInfo();
     if (authInfo.token) {
       const ele = document.createElement("span");
-      ele.textContent = "Your access token is " + authInfo.token;
-      document.body.appendChild(ele);
+      ele.textContent = authInfo.token;
+      document.getElementById("message-token").appendChild(ele);
       document.getElementById("submit-button").disabled = false;
     } else {
       // Do nothing
@@ -131,26 +174,32 @@
     /**
      * Set default value to redirect URL text field
      */
-    document.getElementById("redirectUrl").value = location.href.replace(
-      /\/$/,
-      ""
-    );
+    if (!location.hash)
+      document.getElementById("redirectUrl").value = location.href.replace(
+        /\/$/,
+        ""
+      );
+    else
+      document.getElementById("redirectUrl").value = location.href.replace(
+        /\/\#.*/,
+        ""
+      );
 
     function callback(err, fileName) {
       if (err) {
         console.error("failure: " + fileName);
         console.error(err);
+        const ele = document.createElement("li");
+        ele.setAttribute("class", "fail-item-upload");
+        ele.textContent = "failure: " + fileName;
+        document.getElementById("list-message").appendChild(ele);
       } else {
         console.log("success: " + fileName);
+        const ele = document.createElement("li");
+        ele.setAttribute("class", "success-item-upload");
+        ele.textContent = "success: " + fileName;
+        document.getElementById("list-message").appendChild(ele);
       }
-    }
-
-    function success(fileName) {
-      console.log("success: " + fileName);
-    }
-
-    function failure(fileName) {
-      console.log("failure: " + fileName);
     }
 
     formElem.onsubmit = async (e) => {
