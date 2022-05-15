@@ -98,6 +98,8 @@
       <section id="fileUpload">
         <h2>File Upload</h2>
         <form id="formElem">
+          <label for="bucket-name" class="label-bucket">Bucket Name</label>
+          <input type="text" id="bucket-name" name="bucket-name" />
           <input type="file" id="file-upload" name="file-upload" multiple />
           <input type="submit" id="submit-button" />
         </form>
@@ -168,6 +170,13 @@
     }
     .fail-item-upload {
       color: #f44336;
+    }
+    .label-bucket {
+      font-size: 20px;
+    }
+    #bucket-name {
+      display: block;
+      margin-bottom: 10px;
     }
     footer {
       margin-top: auto;
@@ -265,7 +274,7 @@
       console.log(files);
       const result = await clam.uploadFiles(
         files,
-        "test-bucket-hacknock",
+        document.getElementById("bucket-name").value,
         callback
       );
       console.log(result);
