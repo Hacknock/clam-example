@@ -47,8 +47,11 @@ Please refer to it.
 ## Get credential information from Google Cloud Console
 
 You need Client ID, Redirect URL and Scope before using clam.
+
 Please refer to ["How to get Google Client ID and Client Secret?"](https://www.balbooa.com/gridbox-documentation/how-to-get-google-client-id-and-client-secret) if you do not have any idea to get them.
+
 Please set these information to each text field on [clam demo site](https://hacknock.github.io/clam.github.io/) after that.
+
 If you success to set them, "SET" button color will be changed to "COMPLETE" button as you see the following.
 
 ![Preview if you completed to get credential information](resources/set-credential-information.png)
@@ -56,7 +59,9 @@ If you success to set them, "SET" button color will be changed to "COMPLETE" but
 ## Get Access Token
 
 You get an access token to upload files.
+
 Please click "Get Access Token" button.
+
 After authorization, your access token will be displayed on "Your Access Token" field as you see the following.
 
 ![Preview to get access token](resources/get-access-token.png)
@@ -64,8 +69,11 @@ After authorization, your access token will be displayed on "Your Access Token" 
 ## File Upload
 
 You can upload files after these process.
-Please click "Brows..." button and select files you want to upload to your bucket on Cloud Storage.
+
+You type the bucket name you will upload files to. After that, you click "Brows..." button and select files you want to upload to your bucket on Cloud Storage.
+
 You click "Submit Query" button, file uploading will start.
+
 The result of file uploading will be displayed "File Upload Result" field.
 
 ![Preview to upload files](resources/file-upload.png)
