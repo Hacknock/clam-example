@@ -1,7 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="application-name" content="Clam" />
+    <meta name="author" content="Hacknock" />
+    <meta
+      name="description"
+      content="The demo site of clam which is a library to upload files to Cloud Storage using only front-end Javascript."
+    />
+    <meta
+      name="keywords"
+      content="clam, Cloud Storage, file upload, Javascript, module, library"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./icon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./icon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./icon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./icon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./icon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./icon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./icon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./icon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./icon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./icon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./icon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./icon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="./icon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -113,92 +198,4 @@
     </main>
     <footer>&copy; 2022 <a href="https://hacknock.com">Hacknock</a></footer>
   </body>
-  <script type="module">
-    import Clam from "./clam/clam.js";
-    const clam = new Clam();
-    let authInfo;
-    let json = {
-      clientId: "hoge",
-      scope: "hoge",
-      redirectUrl: "hoge",
-    };
-
-    /**
-     * Set Credential Information to get an access token
-     */
-    document.getElementById("set-cred").addEventListener("click", () => {
-      json.clientId = document.getElementById("clientId").value;
-      json.scope = document.getElementById("scope").value;
-      json.redirectUrl = document.getElementById("redirectUrl").value;
-      try {
-        clam.setCred(json);
-        if (json.clientId && json.scope && json.redirectUrl) {
-          document.getElementById("set-cred").textContent = "COMPLETE";
-          document.getElementById("set-cred").style.color = "#4CAF50";
-        }
-        document.getElementById("message-cred").textContent = "";
-      } catch (err) {
-        document.getElementById("set-cred").textContent = "SET";
-        document.getElementById("set-cred").style.color = "#F44336";
-        document.getElementById("message-cred").textContent = err;
-      }
-    });
-
-    document
-      .getElementById("get-token")
-      .addEventListener("click", clam.getAuth);
-
-    authInfo = clam.getAuthInfo();
-    if (authInfo.token) {
-      const ele = document.createElement("span");
-      ele.textContent = authInfo.token;
-      document.getElementById("message-token").appendChild(ele);
-      document.getElementById("submit-button").disabled = false;
-    } else {
-      // Do nothing
-    }
-
-    /**
-     * Set default value to redirect URL text field
-     */
-    if (!location.hash)
-      document.getElementById("redirectUrl").value = location.href.replace(
-        /\/$/,
-        ""
-      );
-    else
-      document.getElementById("redirectUrl").value = location.href.replace(
-        /\/\#.*/,
-        ""
-      );
-
-    function callback(err, fileName) {
-      if (err) {
-        console.error("failure: " + fileName);
-        console.error(err);
-        const ele = document.createElement("li");
-        ele.setAttribute("class", "fail-item-upload");
-        ele.textContent = "failure: " + fileName;
-        document.getElementById("list-message").appendChild(ele);
-      } else {
-        console.log("success: " + fileName);
-        const ele = document.createElement("li");
-        ele.setAttribute("class", "success-item-upload");
-        ele.textContent = "success: " + fileName;
-        document.getElementById("list-message").appendChild(ele);
-      }
-    }
-
-    formElem.onsubmit = async (e) => {
-      e.preventDefault();
-      const files = document.getElementById("file-upload").files;
-      console.log(files);
-      const result = await clam.uploadFiles(
-        files,
-        document.getElementById("bucket-name").value,
-        callback
-      );
-      console.log(result);
-    };
-  </script>
 </html>
