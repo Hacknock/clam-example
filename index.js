@@ -1,5 +1,12 @@
+/**
+ * Import modules and make instances
+ */
 import Clam from "./clam/clam.js";
 const clam = new Clam();
+
+/**
+ * Prototype declaration
+ */
 let authInfo;
 let json = {
   clientId: "hoge",
@@ -28,8 +35,14 @@ document.getElementById("set-cred").addEventListener("click", () => {
   }
 });
 
+/**
+ * Event listener to get token
+ */
 document.getElementById("get-token").addEventListener("click", clam.getAuth);
 
+/**
+ * Display token
+ */
 authInfo = clam.getAuthInfo();
 if (authInfo.token) {
   const ele = document.createElement("span");
@@ -54,6 +67,11 @@ else
     ""
   );
 
+/**
+ * The callback function when file uploading.
+ * @param {string} err - Set error messsage when an error is occurred.
+ * @param {string} fileName - File name, this parameter always set to this argument.
+ */
 function callback(err, fileName) {
   if (err) {
     console.error("failure: " + fileName);
@@ -71,6 +89,10 @@ function callback(err, fileName) {
   }
 }
 
+/**
+ * Event listener to upload file. This function is called when an user click "Submit Query" button.
+ * @param {Event} e - Event when an user click "Submit Query" button.
+ */
 formElem.onsubmit = async (e) => {
   e.preventDefault();
   const files = document.getElementById("file-upload").files;
