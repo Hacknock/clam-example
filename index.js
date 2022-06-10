@@ -1,7 +1,7 @@
 /**
  * Import modules and make instances
  */
-import Clam from "./clam/clam.js";
+import Clam from "./clam/clam.min.js";
 const clam = new Clam();
 
 /**
