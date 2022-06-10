@@ -38,7 +38,7 @@ document.getElementById("set-cred").addEventListener("click", () => {
 /**
  * Event listener to get token
  */
-document.getElementById("get-token").addEventListener("click", clam.getAuth);
+document.getElementById("get-token").addEventListener("click", clam.toAuthPage);
 
 /**
  * Display token
