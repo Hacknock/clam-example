@@ -1,7 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="application-name" content="Clam" />
+    <meta name="author" content="Hacknock" />
+    <meta
+      name="description"
+      content="The demo site of clam which is a library to upload files to Cloud Storage using only front-end Javascript."
+    />
+    <meta
+      name="keywords"
+      content="clam, Cloud Storage, file upload, Javascript, module, library"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./icon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./icon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./icon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./icon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./icon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./icon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./icon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./icon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./icon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./icon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./icon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./icon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="./icon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js" type="module"></script>
+  </head>
   <body>
-    <h1>Clam example page</h1>
+    <header>
+      <img src="./clam-c.png" class="image" />
+      <h1>Clam</h1>
+    </header>
+    <main>
+      <section id="alert">
+        <h2 class="emph">Attention</h2>
+        <span class="line-alert"
+          >This site is a demo site that is hosted using Github Pages for
+          <a href="https://github.com/Hacknock/clam">clam</a> that is a
+          front-end library to upload file to Cloud Storage.
+          <span class="line-alert"
+            >It means that this site supports you understand how to use
+            <a href="https://github.com/Hacknock/clam">clam</a> so you should
+            not use this site for the usage to upload files.</span
+          >
+        </span>
+        <span class="line-alert"
+          >You <span class="emph">SHOULD NOT</span> give any confidential
+          information and files to this site based on
+          <a
+            href="https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages"
+            >Github Pages Guideline</a
+          >.</span
+        >
+        <span class="line-alert"
+          >This site is built only with front-end code so Hacknock does not get
+          any information from you.</span
+        >
+        <span class="line-alert">
+          We open the source code of this site to the public on Github.<br />
+          This Site Source Code)
+          <a href="https://github.com/Hacknock/clam.github.io"
+            >https://github.com/Hacknock/clam.github.io</a
+          >
+        </span>
+        <span
+          >By using this site you agree to these cautions on Attention.</span
+        >
+      </section>
+      <section id="how-to-use">
+        <h2>How to Use This Site?</h2>
+        <span
+          >Please refer to
+          <a
+            href="https://github.com/Hacknock/clam.github.io/blob/main/README.md"
+            >README.md on clam.github.io</a
+          >
+        </span>
+      </section>
+      <section id="credential">
+        <h2>Set Credential Information</h2>
+        <div class="each-item-cred">
+          <label for="clientId" class="label-cred">Client ID</label>
+          <input
+            type="text"
+            id="clientId"
+            name="clientId"
+            class="value-cred"
+            size="100"
+          />
+        </div>
+        <div class="each-item-cred">
+          <label for="scope" class="label-cred">Scope</label>
+          <input
+            type="text"
+            id="scope"
+            name="scope"
+            class="value-cred"
+            size="100"
+          />
+        </div>
+        <div class="each-item-cred">
+          <label for="redirectUrl" class="label-cred">Redirect URL</label>
+          <input
+            type="text"
+            id="redirectUrl"
+            name="redirectUrl"
+            class="value-cred"
+            size="100"
+          />
+        </div>
+        <button id="set-cred">SET</button>
+        <span id="message-cred"></span>
+      </section>
+      <hr />
+      <section id="accessToken">
+        <h2>Get Access Token</h2>
+        <button id="get-token">Get Access Token</button>
+        <h3>Your Access Token</h3>
+        <div class="message" id="message-token"></div>
+      </section>
+      <hr />
+      <section id="fileUpload">
+        <h2>File Upload</h2>
+        <form id="formElem">
+          <label for="bucket-name" class="label-bucket">Bucket Name</label>
+          <input type="text" id="bucket-name" name="bucket-name" />
+          <input type="file" id="file-upload" name="file-upload" multiple />
+          <input type="submit" id="submit-button" />
+        </form>
+        <h3>File Upload Result</h3>
+        <div class="message" id="message-upload">
+          <ul id="list-message"></ul>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2022 <a href="https://hacknock.com">Hacknock</a></footer>
   </body>
 </html>
