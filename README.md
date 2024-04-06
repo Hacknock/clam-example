@@ -1,4 +1,4 @@
-# clam.github.io
+# clam-example
 
 <!-- # Short Description -->
 
@@ -6,11 +6,11 @@ This repository hosts a demo website for clam that is a library to upload files 
 
 <!-- # Badges -->
 
-[![Github issues](https://img.shields.io/github/issues/Hacknock/clam.github.io)](https://github.com/Hacknock/clam.github.io/issues)
-[![Github forks](https://img.shields.io/github/forks/Hacknock/clam.github.io)](https://github.com/Hacknock/clam.github.io/network/members)
-[![Github stars](https://img.shields.io/github/stars/Hacknock/clam.github.io)](https://github.com/Hacknock/clam.github.io/stargazers)
-[![Github top language](https://img.shields.io/github/languages/top/Hacknock/clam.github.io)](https://github.com/Hacknock/clam.github.io/)
-[![Github license](https://img.shields.io/github/license/Hacknock/clam.github.io)](https://github.com/Hacknock/clam.github.io/)
+[![Github issues](https://img.shields.io/github/issues/Hacknock/clam-example)](https://github.com/Hacknock/clam-example/issues)
+[![Github forks](https://img.shields.io/github/forks/Hacknock/clam-example)](https://github.com/Hacknock/clam-example/network/members)
+[![Github stars](https://img.shields.io/github/stars/Hacknock/clam-example)](https://github.com/Hacknock/clam-example/stargazers)
+[![Github top language](https://img.shields.io/github/languages/top/Hacknock/clam-example)](https://github.com/Hacknock/clam-example/)
+[![Github license](https://img.shields.io/github/license/Hacknock/clam-example)](https://github.com/Hacknock/clam-example/)
 
 # Tags
 
@@ -32,7 +32,7 @@ This command makes you install necessary environments to your PC.
 Please run the following command if you deploy it on your local machine.
 
 ```
-node server.js
+npm run start
 ```
 
 # Minimal Example
@@ -50,11 +50,11 @@ You need Client ID, Redirect URL and Scope before using clam.
 
 Please refer to ["How to get Google Client ID and Client Secret?"](https://www.balbooa.com/gridbox-documentation/how-to-get-google-client-id-and-client-secret) if you do not have any idea to get them.
 
-Please set these information to each text field on [clam demo site](https://hacknock.github.io/clam.github.io/) after that.
+Please set these information to each text field on [clam demo site](https://hacknock-example/clam-example/) after that.
 
 If you success to set them, "SET" button color will be changed to "COMPLETE" button as you see the following.
 
-![Preview if you completed to get credential information](resources/set-credential-information.png)
+![Preview if you completed to get credential information](screenshots/set-credential-information.png)
 
 ## Get Access Token
 
@@ -64,7 +64,7 @@ Please click "Get Access Token" button.
 
 After authorization, your access token will be displayed on "Your Access Token" field as you see the following.
 
-![Preview to get access token](resources/get-access-token.png)
+![Preview to get access token](screenshots/get-access-token.png)
 
 ## File Upload
 
@@ -76,7 +76,7 @@ You click "Submit Query" button, file uploading will start.
 
 The result of file uploading will be displayed "File Upload Result" field.
 
-![Preview to upload files](resources/file-upload.png)
+![Preview to upload files](screenshots/file-upload.png)
 
 # Contributors
 

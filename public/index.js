@@ -1,7 +1,7 @@
 /**
  * Import modules and make instances
  */
-import Clam from "./clam/clam.min.js";
+import Clam from "https://raw.githubusercontent.com/Hacknock/clam/main/clam.min.js";
 const clam = new Clam();
 
 /**
@@ -56,16 +56,8 @@ if (authInfo.token) {
 /**
  * Set default value to redirect URL text field
  */
-if (!location.hash)
-  document.getElementById("redirectUrl").value = location.href.replace(
-    /\/$/,
-    ""
-  );
-else
-  document.getElementById("redirectUrl").value = location.href.replace(
-    /\/\#.*/,
-    ""
-  );
+if (!location.hash) document.getElementById("redirectUrl").value = location.href.replace(/\/$/, "");
+else document.getElementById("redirectUrl").value = location.href.replace(/\/\#.*/, "");
 
 /**
  * The callback function when file uploading.

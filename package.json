@@ -1,14 +1,21 @@
 {
-  "name": "clam.github.io",
+  "name": "clam-example",
   "version": "0.1.0",
   "description": "This package hosts a sample website that uses clam.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "homepage": "https://github.com/Hacknock/clam-example#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hacknock/clam.github.io.git"
+    "url": "git+https://github.com/Hacknock/clam-example.git"
+  },
+  "author": "Hacknock <info@hacknock.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hacknock/clam-example/issues"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "GCP",
@@ -16,12 +23,6 @@
     "File",
     "Upload"
   ],
-  "author": "Hacknock <info@hacknock.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Hacknock/clam.github.io/issues"
-  },
-  "homepage": "https://github.com/Hacknock/clam.github.io#readme",
   "dependencies": {
     "express": "^4.18.1"
   }
