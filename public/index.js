@@ -1,7 +1,6 @@
 /**
  * Import modules and make instances
  */
-import Clam from "https://raw.githubusercontent.com/Hacknock/clam/main/clam.min.js";
 const clam = new Clam();
 
 /**
